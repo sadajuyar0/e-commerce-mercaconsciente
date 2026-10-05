@@ -1,0 +1,58 @@
+
+Para este proyecto se había planteado usar una plataforma de e-commerce pero se descartó debido al alcance reducido que se quiere lograr comparado a la gran cantidad de funcionalidades que ofrecen las plataformas comunes, seguido de costos de administración altos incluso para negocios pequeños y pocas visitas al mes.
+
+En cambio se ha optado por desarrollar desde cero una plataforma e-commerce con las funciones básicas de catálogo, página de producto, carrito de compra y página informativa de pago (que no es una pasarela de pago). También se considera una página informativa sobre el emprendimiento y de contacto.
+
+El proyecto no tiene presupuesto. Hay que hacer uso de recursos gratuitos en la medida de lo posible y tomar decisiones balanceando alcance y funcionalidad con costos de implementación.
+
+## El emprendimiento
+Mercaconsciente es una iniciativa para conectar pequeños productores de productos naturales [mejorar descripción de productos] con clientes que buscan productos orgánicos de calidad con buenas prácticas de manufactura y utilización consistente de recursos [mejorar descripción de los clientes].
+
+El proyecto de modernización
+
+## Mecánica actual
+Casa mes los productores definen su oferta de productos y se la envían a la administradora a través de formatos de Excel.
+
+La administradora luego construye un formulario de Google Forms donde publica los productos a modo de preguntas (una página por productor). Está mecánica es ineficiente e incómoda para el usuario.
+
+El formulario exporta los resultados a una hoja de cálculo y la administradora comunica a los productores cuáles fueron los encargos de los clientes.
+
+Los productos se llevan a un centro de acopio y luego se distribuyen a los compradores. Los compradores realizan el pago a la administradora directamente, quien luego transfiere el dinero a los productores correspondientemente deduciendo un porcentaje por gestión y envío de productos.
+
+El proceso completo lleva al rededor de 15 días, desde que la administradora envía el formato de oferta a los productores hasta que los productos son entregados a los compradores.
+
+# Plataforma de e-commerce 
+## Página de catálogo 
+Catálogo navegable de productos donde los usuarios puedan ver un listado [definir formato de presentación] con el nombre y foto de cada uno, 
+
+## Página de producto
+Página informativa por producto que contiene el título, la imagen principal o listado de imágenes, precio, unidad de medida, unidades a seleccionar, botón de añadir a la cesta, descripción detallada de los beneficios del producto así como su elaboración y en general la información compartida por el productor.
+
+Al final debe haber un botón para volver al catálogo 
+
+## Carrito de compra
+Persistencia simple en navegador por medio de LocalStorage.
+Debe almacenar un objeto json con el listado de productos con sus unidades y precios. Cada producto debe tener información sobre el proveedor para efectos de identificación del pedido.
+
+## Página de realizar pedido
+Desde el carrito de compra se ofrece la opción de confirmar el pedido.
+Se crea un número/código de pedido y se almacena en base de datos con estado pendiente de pago
+Se muestra la información para realizar el pago a una cuenta o llave bre-b
+[pendiente más definición del proceso de pago, validación de pagos realizados e identificación de pedidos]
+
+## Página Sobre Nosotros
+Debe comenzar por el logo de Mercaconsciente en formato grande seguido de un párrafo breve con la filosofía del emprendimiento
+
+
+## Fuera de alcance
+Pasarela de pago. El pago seguirá siendo manual. Se plantea un mecanismo que permita la identificación de un pago con un pedido.
+
+Auth y seguridad de rutas
+La plataforma no requiere login ni acceso y así mismo no hay restricciones en la información o páginas navegables
+
+
+## Temas pendientes
+Elección de hosting
+Identificación de un pago con un pedido
+Uso de base de datos (se cree que es el elemento que puede tener más costo)
+Alternativa solo con archivos estáticos. Cómo hacen el pedido los clientes??
