@@ -22,7 +22,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .site-container { width: min(100% - 40px, 1280px); margin-inline: auto; }
 .nav-link { color: #223127; font-size: 13px; font-weight: 600; transition: color .18s ease; }
 .nav-link:hover, .footer-link:hover { color: #c86a47; }
-.icon-button { display: inline-grid; place-items: center; width: 44px; height: 44px; border: 1px solid rgba(34,49,39,.17); border-radius: 50%; background: transparent; color: #223127; transition: background .18s ease, color .18s ease, border-color .18s ease; }
+.icon-button { display: none; place-items: center; width: 44px; height: 44px; border: 1px solid rgba(34,49,39,.17); border-radius: 50%; background: transparent; color: #223127; transition: background .18s ease, color .18s ease, border-color .18s ease; }
 .icon-button:hover { border-color: #3f684a; background: #3f684a; color: white; }
 .footer-link { display: inline-flex; align-items: center; gap: 4px; transition: color .18s ease; }
 .eyebrow { display: flex; align-items: center; gap: 9px; color: #3f684a; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
