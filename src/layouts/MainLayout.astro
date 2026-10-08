@@ -1,0 +1,39 @@
+---
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import '@/styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+}
+
+const { title, description, image = '/images/market-cover.svg' } = Astro.props;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
+const socialImage = image.startsWith('http') ? image : Astro.site ? new URL(image, Astro.site) : image;
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f4ed" />
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:site_name" content="Mercaconsciente" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImage} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header client:load />
+    <main><slot /></main>
+    <Footer />
+  </body>
+</html>

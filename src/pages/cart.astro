@@ -1,0 +1,10 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import CartDrawer from '@/components/cart/CartDrawer';
+---
+<MainLayout title="Tu cesta | Mercaconsciente" description="Revisa las cantidades y los productores de tu cesta antes de confirmar el pedido.">
+  <section class="site-container min-h-[420px] pb-20 pt-12 sm:pt-16">
+    <p class="eyebrow">Tu selección</p><h1 class="display-heading mt-5">Tu cesta.</h1>
+    <div class="mt-9"><CartDrawer client:load /></div>
+  </section>
+</MainLayout>

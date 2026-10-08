@@ -1,0 +1,38 @@
+---
+import { ArrowLeft, Check, HeartHandshake, PackageCheck } from 'lucide-react';
+import MainLayout from '@/layouts/MainLayout.astro';
+import ProductDetailActions from '@/components/products/ProductDetailActions';
+import { getProducts } from '@/services/productService';
+import { whatsappUrl } from '@/utils/format';
+
+export async function getStaticPaths() {
+  const products = await getProducts();
+  return products.map((product) => ({ params: { id: product.id }, props: { product } }));
+}
+
+const { product } = Astro.props;
+const ingredients = product.description.match(/(?:ingredientes|contiene)\s*:\s*(.*)/i)?.[1]?.replace(/[.)]+$/, '');
+const contactUrl = whatsappUrl(product.producerContact);
+---
+<MainLayout title={`${product.name} | Mercaconsciente`} description={`${product.name}, elaborado por ${product.producer}. ${product.presentation}. Oferta de temporada en Mercaconsciente.`} image={product.image}>
+  <section class="site-container pb-16 pt-8 sm:pb-24 sm:pt-12">
+    <a href="/shop" class="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-leaf hover:text-clay"><ArrowLeft size={16} /> Volver a la tienda</a>
+    <div class="grid gap-8 lg:grid-cols-[1.03fr_.97fr] lg:gap-16">
+      <div class="relative aspect-square overflow-hidden bg-[#e9e4d6]"><img class="size-full object-cover" src={product.image} alt={`Imagen de referencia para ${product.name}`} width="900" height="900" fetchpriority="high" /><span class="image-note">Imagen de referencia</span></div>
+      <div class="flex flex-col justify-center py-2">
+        <p class="eyebrow">{product.category}</p>
+        <h1 class="mt-5 font-display text-4xl leading-[1.02] text-ink sm:text-5xl">{product.name}</h1>
+        <p class="mt-4 text-sm text-ink/60">Elaborado por <a class="font-semibold text-leaf underline underline-offset-4" href={contactUrl ?? '/about'}>{product.producer}</a></p>
+        <div class="mt-7"><ProductDetailActions client:load product={product} /></div>
+        <div class="mt-8 grid gap-4 border-y border-ink/15 py-5 sm:grid-cols-2">
+          <div class="flex gap-3"><PackageCheck size={19} className="mt-0.5 shrink-0 text-leaf" /><div><h2 class="text-sm font-semibold">Disponibilidad</h2><p class="mt-1 text-xs leading-5 text-ink/60">{product.availability === 'open' ? 'Oferta abierta. La cantidad se coordina con el productor.' : product.availability === 'limited' ? `${product.stock} unidades restantes según la matriz.` : 'Cantidad por confirmar con el productor.'}</p></div></div>
+          <div class="flex gap-3"><HeartHandshake size={19} className="mt-0.5 shrink-0 text-clay" /><div><h2 class="text-sm font-semibold">Compra consciente</h2><p class="mt-1 text-xs leading-5 text-ink/60">El pedido reúne productos de varios productores y se coordina fuera de línea.</p></div></div>
+        </div>
+        <div class="mt-7"><h2 class="font-display text-xl text-ink">Sobre este producto</h2><p class="mt-3 text-sm leading-7 text-ink/70">{product.description}</p></div>
+        {ingredients && <div class="mt-5"><h2 class="font-display text-xl text-ink">Ingredientes</h2><p class="mt-2 text-sm leading-6 text-ink/70">{ingredients}</p></div>}
+        <div class="mt-6 flex items-center gap-2 text-xs text-ink/55"><Check size={15} className="text-leaf" /> Información transcrita de la oferta del productor.</div>
+        <a class="mt-7 inline-flex w-fit items-center gap-2 text-sm font-semibold text-leaf underline underline-offset-4" href={contactUrl ?? '/contact'}>Consultar al productor</a>
+      </div>
+    </div>
+  </section>
+</MainLayout>

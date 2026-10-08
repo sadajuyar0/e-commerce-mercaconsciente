@@ -1,0 +1,27 @@
+---
+import { ArrowRight, HandHeart, Leaf, Recycle } from 'lucide-react';
+import MainLayout from '@/layouts/MainLayout.astro';
+---
+<MainLayout title="Nuestra historia | Mercaconsciente" description="Conoce Mercaconsciente, una iniciativa que conecta productores locales y personas que eligen con cuidado.">
+  <section class="site-container pb-20 pt-12 sm:pt-16">
+    <div class="relative overflow-hidden bg-ink px-6 py-12 text-paper sm:px-12 sm:py-16">
+      <div class="paper-grain absolute inset-0 opacity-30" aria-hidden="true"></div>
+      <div class="relative max-w-4xl">
+        <p class="eyebrow !text-sun">Nuestra historia</p>
+        <div class="mt-7 flex items-center gap-4"><span class="grid size-14 place-items-center rounded-full bg-leaf text-white"><Leaf size={27} /></span><span class="font-display text-3xl sm:text-5xl">Mercaconsciente</span></div>
+        <h1 class="mt-10 max-w-3xl font-display text-4xl leading-[1.04] sm:text-6xl">Un mercado que vuelve a mirar de dónde viene lo bueno.</h1>
+        <p class="mt-6 max-w-2xl text-sm leading-7 text-white/75 sm:text-base">Mercaconsciente acerca a pequeños productores de alimentos y productos naturales a personas que buscan calidad, elaboración cuidadosa y un uso más consciente de los recursos.</p>
+      </div>
+    </div>
+    <section class="grid gap-10 py-14 sm:grid-cols-[.7fr_1.3fr] sm:py-20">
+      <div><p class="eyebrow">La razón de ser</p><h2 class="mt-4 font-display text-3xl text-ink">Detrás de cada elección, hay personas.</h2></div>
+      <div class="max-w-2xl"><p class="text-base leading-8 text-ink/70">Cada temporada, productores locales comparten una oferta que nace de sus saberes, sus ingredientes y su forma de trabajar. Nuestro papel es reunirla en un solo lugar para que encontrar y elegir sea más sencillo.</p><p class="mt-5 text-base leading-8 text-ink/70">Queremos que una compra cotidiana también sea una manera de reconocer el trabajo independiente, acercar productor y cliente, y valorar prácticas que cuidan lo que tenemos en común.</p></div>
+    </section>
+    <div class="grid gap-8 border-y border-ink/15 py-10 sm:grid-cols-3">
+      <div><HandHeart className="text-clay" size={22} /><h3 class="mt-4 font-display text-xl text-ink">Relaciones cercanas</h3><p class="mt-2 text-sm leading-6 text-ink/65">Personas, no catálogos anónimos, en el centro de cada pedido.</p></div>
+      <div><Leaf className="text-leaf" size={22} /><h3 class="mt-4 font-display text-xl text-ink">Origen transparente</h3><p class="mt-2 text-sm leading-6 text-ink/65">Información del producto y del productor disponible al elegir.</p></div>
+      <div><Recycle className="text-clay" size={22} /><h3 class="mt-4 font-display text-xl text-ink">Cuidado compartido</h3><p class="mt-2 text-sm leading-6 text-ink/65">Una invitación a valorar los ingredientes y recursos cotidianos.</p></div>
+    </div>
+    <a class="button-primary mt-9" href="/shop">Conocer la oferta <ArrowRight size={16} /></a>
+  </section>
+</MainLayout>
