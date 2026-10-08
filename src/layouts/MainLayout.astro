@@ -2,6 +2,7 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import '@/styles/global.css';
+import { withBase } from '@/utils/paths';
 
 interface Props {
   title: string;
@@ -10,8 +11,8 @@ interface Props {
 }
 
 const { title, description, image = '/images/market-cover.svg' } = Astro.props;
-const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
-const socialImage = image.startsWith('http') ? image : Astro.site ? new URL(image, Astro.site) : image;
+const canonical = Astro.site ? new URL(withBase(Astro.url.pathname), Astro.site) : undefined;
+const socialImage = image.startsWith('http') ? image : Astro.site ? new URL(withBase(image), Astro.site) : image;
 ---
 <!doctype html>
 <html lang="es">
@@ -21,7 +22,7 @@ const socialImage = image.startsWith('http') ? image : Astro.site ? new URL(imag
     <meta name="theme-color" content="#f6f4ed" />
     <meta name="description" content={description} />
     {canonical && <link rel="canonical" href={canonical} />}
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <link rel="preconnect" href="https://images.unsplash.com" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_CO" />

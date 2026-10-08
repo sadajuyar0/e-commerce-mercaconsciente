@@ -2,13 +2,14 @@ import { useStore } from '@nanostores/react';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import { cartStore, cartSubtotal, removeProduct, updateQuantity } from '@/store/cartStore';
 import { formatPrice } from '@/utils/format';
+import { withBase } from '@/utils/paths';
 
 export default function CartDrawer() {
   const items = useStore(cartStore);
   const subtotal = cartSubtotal(items);
 
   if (!items.length) {
-    return <div className="py-16 text-center"><p className="font-display text-3xl text-ink">Tu cesta está esperando</p><p className="mt-3 text-sm text-ink/60">Explora la oferta de productores locales para empezar.</p><a className="button-primary mt-7" href="/shop">Ir a la tienda <span aria-hidden="true">→</span></a></div>;
+    return <div className="py-16 text-center"><p className="font-display text-3xl text-ink">Tu cesta está esperando</p><p className="mt-3 text-sm text-ink/60">Explora la oferta de productores locales para empezar.</p><a className="button-primary mt-7" href={withBase('/shop')}>Ir a la tienda <span aria-hidden="true">→</span></a></div>;
   }
 
   return (
@@ -19,7 +20,7 @@ export default function CartDrawer() {
             <img className="aspect-square size-[76px] rounded-sm object-cover sm:size-[104px]" src={item.image} alt="" width="900" height="900" />
             <div className="min-w-0">
               <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-leaf">{item.producer}</p>
-              <a href={`/product/${item.productId}`} className="mt-1 block font-display text-lg leading-tight text-ink hover:text-leaf">{item.name}</a>
+              <a href={withBase(`/product/${item.productId}`)} className="mt-1 block font-display text-lg leading-tight text-ink hover:text-leaf">{item.name}</a>
               <p className="mt-1 text-xs text-ink/55">{item.presentation || 'Presentación por confirmar'}</p>
               <p className="mt-2 text-sm font-semibold text-ink sm:hidden">{formatPrice(item.price * item.quantity)}</p>
             </div>
@@ -41,7 +42,7 @@ export default function CartDrawer() {
         <h2 className="font-display text-2xl text-ink">Resumen</h2>
         <div className="mt-5 flex justify-between gap-4 text-sm"><span>Subtotal</span><span className="font-semibold">{formatPrice(subtotal)}</span></div>
         <p className="mt-3 text-xs leading-5 text-ink/55">El envío se coordina al confirmar. Este catálogo no cobra en línea.</p>
-        <a className="button-primary mt-6 w-full" href="/checkout">Continuar con el pedido <span aria-hidden="true">→</span></a>
+        <a className="button-primary mt-6 w-full" href={withBase('/checkout')}>Continuar con el pedido <span aria-hidden="true">→</span></a>
       </aside>
     </div>
   );

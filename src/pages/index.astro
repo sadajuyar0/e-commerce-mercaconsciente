@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUpRight, Leaf, MapPin, Sprout } from 'lucide-react';
 import MainLayout from '@/layouts/MainLayout.astro';
 import ProductCard from '@/components/products/ProductCard';
 import { getFeaturedProducts } from '@/services/productService';
+import { withBase } from '@/utils/paths';
 
 const featured = await getFeaturedProducts(8);
 ---
@@ -13,8 +14,8 @@ const featured = await getFeaturedProducts(8);
       <h1 class="mt-6 font-display text-[clamp(3.2rem,7vw,6.6rem)] leading-[.88] text-ink">Lo bueno<br />viene de <em class="text-leaf">cerca.</em></h1>
       <p class="mt-7 max-w-[440px] text-[15px] leading-7 text-ink/70">Alimentos y productos naturales de pequeños productores que cuidan lo que hacen, cómo lo hacen y los recursos que comparten.</p>
       <div class="mt-8 flex flex-wrap gap-3">
-        <a class="button-primary" href="/shop">Explorar la oferta <ArrowRight size={17} /></a>
-        <a class="button-secondary" href="/about">Conocer el proyecto</a>
+        <a class="button-primary" href={withBase('/shop')}>Explorar la oferta <ArrowRight size={17} /></a>
+        <a class="button-secondary" href={withBase('/about')}>Conocer el proyecto</a>
       </div>
       <div class="mt-12 flex flex-wrap gap-x-6 gap-y-3 border-t border-ink/15 pt-5 text-xs font-semibold text-ink/65">
         <span class="inline-flex items-center gap-2"><Sprout size={15} className="text-leaf" /> Productores independientes</span>
@@ -22,7 +23,7 @@ const featured = await getFeaturedProducts(8);
       </div>
     </div>
     <div class="fade-up order-1 relative min-h-[350px] overflow-hidden md:order-2 md:min-h-[530px]" style="animation-delay: 100ms">
-      <img class="absolute inset-0 size-full object-cover" src="/images/market-cover.svg" alt="Ilustración de una mesa de mercado con alimentos de temporada" width="1200" height="1350" fetchpriority="high" />
+      <img class="absolute inset-0 size-full object-cover" src={withBase('/images/market-cover.svg')} alt="Ilustración de una mesa de mercado con alimentos de temporada" width="1200" height="1350" fetchpriority="high" />
       <div class="absolute bottom-4 left-4 flex items-center gap-3 bg-paper px-4 py-3 sm:bottom-7 sm:left-7">
         <Leaf size={19} className="text-leaf" />
         <span class="text-xs font-semibold leading-5 text-ink">Oferta de temporada<br /><span class="font-normal text-ink/55">Septiembre – octubre 2026</span></span>
@@ -34,10 +35,10 @@ const featured = await getFeaturedProducts(8);
     <div class="site-container">
       <div class="mb-8 flex items-end justify-between gap-5 sm:mb-10">
         <div><p class="eyebrow">De la oferta actual</p><h2 class="mt-4 font-display text-3xl text-ink sm:text-4xl">Un buen lugar para empezar</h2></div>
-        <a class="hidden items-center gap-2 text-sm font-semibold text-leaf hover:text-clay sm:inline-flex" href="/shop">Ver toda la oferta <ArrowUpRight size={16} /></a>
+        <a class="hidden items-center gap-2 text-sm font-semibold text-leaf hover:text-clay sm:inline-flex" href={withBase('/shop')}>Ver toda la oferta <ArrowUpRight size={16} /></a>
       </div>
       <div class="product-grid">{featured.map((product) => <ProductCard product={product} />)}</div>
-      <a class="button-secondary mt-7 w-full sm:hidden" href="/shop">Ver toda la oferta <ArrowRight size={16} /></a>
+      <a class="button-secondary mt-7 w-full sm:hidden" href={withBase('/shop')}>Ver toda la oferta <ArrowRight size={16} /></a>
     </div>
   </section>
 

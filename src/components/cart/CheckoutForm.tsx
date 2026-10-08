@@ -4,6 +4,7 @@ import { useStore } from '@nanostores/react';
 import { cartStore, cartSubtotal, clearCart } from '@/store/cartStore';
 import type { Order } from '@/types/ecommerce';
 import { formatPrice } from '@/utils/format';
+import { withBase } from '@/utils/paths';
 
 const ORDER_KEY = 'mercaconsciente-last-order-v1';
 
@@ -83,13 +84,13 @@ export default function CheckoutForm() {
           <div className="mt-3 flex justify-between border-t border-ink/15 pt-4 font-semibold"><span>Total</span><span>{formatPrice(order.total)}</span></div>
         </div>
         {error && <p className="mt-4 text-sm text-clay" role="alert">{error}</p>}
-        <a className="button-primary mt-7" href="/shop">Volver a la tienda <ArrowRight size={16} /></a>
+        <a className="button-primary mt-7" href={withBase('/shop')}>Volver a la tienda <ArrowRight size={16} /></a>
       </div>
     );
   }
 
   if (!items.length) {
-    return <div className="border-y border-ink/15 py-10"><p className="font-display text-2xl text-ink">Aún no hay productos para confirmar</p><p className="mt-2 text-sm text-ink/60">Agrega productos a tu cesta y vuelve aquí.</p><a className="button-primary mt-6" href="/shop">Explorar la tienda <ArrowRight size={16} /></a></div>;
+    return <div className="border-y border-ink/15 py-10"><p className="font-display text-2xl text-ink">Aún no hay productos para confirmar</p><p className="mt-2 text-sm text-ink/60">Agrega productos a tu cesta y vuelve aquí.</p><a className="button-primary mt-6" href={withBase('/shop')}>Explorar la tienda <ArrowRight size={16} /></a></div>;
   }
 
   return (

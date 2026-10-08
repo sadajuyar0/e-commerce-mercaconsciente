@@ -2,6 +2,7 @@
 import { ArrowUpRight, MessageCircle, ShoppingBasket } from 'lucide-react';
 import MainLayout from '@/layouts/MainLayout.astro';
 import { getProducts } from '@/services/productService';
+import { withBase } from '@/utils/paths';
 
 const products = await getProducts();
 const producers = [...new Set(products.map((product) => product.producer))];
@@ -11,7 +12,7 @@ const producers = [...new Set(products.map((product) => product.producer))];
     <p class="eyebrow">Estamos cerca</p><h1 class="display-heading mt-5">Hablemos.</h1>
     <p class="mt-5 max-w-xl text-sm leading-7 text-ink/65">¿Tienes dudas sobre un producto, un pedido o cómo funciona esta iniciativa? Escríbenos o consulta directamente a quienes lo elaboran.</p>
     <div class="mt-9 grid gap-10 border-y border-ink/15 py-8 sm:grid-cols-2">
-      <div><MessageCircle className="text-leaf" size={23} /><h2 class="mt-4 font-display text-2xl text-ink">Consulta a un productor</h2><p class="mt-2 text-sm leading-6 text-ink/65">En cada ficha de producto encontrarás el teléfono informado en la matriz de oferta para contactar a quien lo elabora.</p><a class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-leaf underline underline-offset-4" href="/shop">Explorar productores <ArrowUpRight size={15} /></a></div>
+      <div><MessageCircle className="text-leaf" size={23} /><h2 class="mt-4 font-display text-2xl text-ink">Consulta a un productor</h2><p class="mt-2 text-sm leading-6 text-ink/65">En cada ficha de producto encontrarás el teléfono informado en la matriz de oferta para contactar a quien lo elabora.</p><a class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-leaf underline underline-offset-4" href={withBase('/shop')}>Explorar productores <ArrowUpRight size={15} /></a></div>
       <div><ShoppingBasket className="text-clay" size={23} /><h2 class="mt-4 font-display text-2xl text-ink">¿Sobre un pedido?</h2><p class="mt-2 text-sm leading-6 text-ink/65">Al confirmar tu cesta recibirás una referencia local para identificarlo. El pago y la coordinación de entrega se realizan manualmente.</p></div>
     </div>
     <p class="mt-6 text-xs text-ink/55">Productores incluidos en esta oferta: {producers.join(' · ')}.</p>

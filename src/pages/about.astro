@@ -1,6 +1,7 @@
 ---
 import { ArrowRight, HandHeart, Leaf, Recycle } from 'lucide-react';
 import MainLayout from '@/layouts/MainLayout.astro';
+import { withBase } from '@/utils/paths';
 ---
 <MainLayout title="Nuestra historia | Mercaconsciente" description="Conoce Mercaconsciente, una iniciativa que conecta productores locales y personas que eligen con cuidado.">
   <section class="site-container pb-20 pt-12 sm:pt-16">
@@ -22,6 +23,6 @@ import MainLayout from '@/layouts/MainLayout.astro';
       <div><Leaf className="text-leaf" size={22} /><h3 class="mt-4 font-display text-xl text-ink">Origen transparente</h3><p class="mt-2 text-sm leading-6 text-ink/65">Información del producto y del productor disponible al elegir.</p></div>
       <div><Recycle className="text-clay" size={22} /><h3 class="mt-4 font-display text-xl text-ink">Cuidado compartido</h3><p class="mt-2 text-sm leading-6 text-ink/65">Una invitación a valorar los ingredientes y recursos cotidianos.</p></div>
     </div>
-    <a class="button-primary mt-9" href="/shop">Conocer la oferta <ArrowRight size={16} /></a>
+    <a class="button-primary mt-9" href={withBase('/shop')}>Conocer la oferta <ArrowRight size={16} /></a>
   </section>
 </MainLayout>

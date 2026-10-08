@@ -4,6 +4,7 @@ import MainLayout from '@/layouts/MainLayout.astro';
 import ProductDetailActions from '@/components/products/ProductDetailActions';
 import { getProducts } from '@/services/productService';
 import { whatsappUrl } from '@/utils/format';
+import { withBase } from '@/utils/paths';
 
 export async function getStaticPaths() {
   const products = await getProducts();
@@ -16,7 +17,7 @@ const contactUrl = whatsappUrl(product.producerContact);
 ---
 <MainLayout title={`${product.name} | Mercaconsciente`} description={`${product.name}, elaborado por ${product.producer}. ${product.presentation}. Oferta de temporada en Mercaconsciente.`} image={product.image}>
   <section class="site-container pb-16 pt-8 sm:pb-24 sm:pt-12">
-    <a href="/shop" class="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-leaf hover:text-clay"><ArrowLeft size={16} /> Volver a la tienda</a>
+    <a href={withBase('/shop')} class="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-leaf hover:text-clay"><ArrowLeft size={16} /> Volver a la tienda</a>
     <div class="grid gap-8 lg:grid-cols-[1.03fr_.97fr] lg:gap-16">
       <div class="relative aspect-square overflow-hidden bg-[#e9e4d6]"><img class="size-full object-cover" src={product.image} alt={`Imagen de referencia para ${product.name}`} width="900" height="900" fetchpriority="high" /><span class="image-note">Imagen de referencia</span></div>
       <div class="flex flex-col justify-center py-2">

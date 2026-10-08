@@ -2,10 +2,11 @@
 import { ArrowLeft } from 'lucide-react';
 import MainLayout from '@/layouts/MainLayout.astro';
 import CheckoutForm from '@/components/cart/CheckoutForm';
+import { withBase } from '@/utils/paths';
 ---
 <MainLayout title="Confirmar pedido | Mercaconsciente" description="Confirma los datos de entrega y genera una referencia local para identificar tu pedido. Sin cobros en línea.">
   <section class="site-container min-h-[480px] pb-20 pt-10 sm:pt-14">
-    <a href="/cart" class="inline-flex items-center gap-2 text-sm font-semibold text-leaf hover:text-clay"><ArrowLeft size={16} /> Volver a la cesta</a>
+    <a href={withBase('/cart')} class="inline-flex items-center gap-2 text-sm font-semibold text-leaf hover:text-clay"><ArrowLeft size={16} /> Volver a la cesta</a>
     <p class="eyebrow mt-8">Último paso</p><h1 class="display-heading mt-4">Confirmar pedido.</h1>
     <div class="mt-9"><CheckoutForm client:load /></div>
   </section>

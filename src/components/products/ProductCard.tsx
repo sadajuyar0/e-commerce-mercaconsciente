@@ -2,6 +2,7 @@ import { ArrowUpRight, Plus, ShoppingBag } from 'lucide-react';
 import type { Product } from '@/types/ecommerce';
 import { addProduct } from '@/store/cartStore';
 import { formatPrice } from '@/utils/format';
+import { withBase } from '@/utils/paths';
 
 interface ProductCardProps {
   product: Product;
@@ -12,7 +13,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <article className="product-card group">
-      <a href={`/product/${product.id}`} className="product-image-link" aria-label={`Ver ${product.name}`}>
+      <a href={withBase(`/product/${product.id}`)} className="product-image-link" aria-label={`Ver ${product.name}`}>
         <img className="product-image" src={product.image} alt={`Imagen de referencia para ${product.name}`} loading="lazy" width="900" height="900" />
         <span className="image-note">Imagen de referencia</span>
       </a>
@@ -21,7 +22,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <span className="truncate">{product.producer}</span>
           <span className="whitespace-nowrap text-ink/50">{product.availability === 'open' ? 'Por encargo' : product.availability === 'limited' ? 'Temporada' : 'Consultar'}</span>
         </div>
-        <a href={`/product/${product.id}`} className="line-clamp-2 font-display text-[19px] leading-[1.18] text-ink hover:text-leaf">{product.name}</a>
+        <a href={withBase(`/product/${product.id}`)} className="line-clamp-2 font-display text-[19px] leading-[1.18] text-ink hover:text-leaf">{product.name}</a>
         <p className="mt-2 line-clamp-1 text-xs text-ink/55">{product.presentation || 'Presentación por confirmar'}</p>
         <div className="mt-auto flex items-end justify-between gap-2 pt-4">
           <span className="font-semibold text-ink">{formatPrice(product.price)}</span>
@@ -30,7 +31,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           </button>
         </div>
       </div>
-      <a className="sr-only" href={`/product/${product.id}`} aria-label={`Más información sobre ${product.name}`}><ArrowUpRight /></a>
+      <a className="sr-only" href={withBase(`/product/${product.id}`)} aria-label={`Más información sobre ${product.name}`}><ArrowUpRight /></a>
     </article>
   );
 }
