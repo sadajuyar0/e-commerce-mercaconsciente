@@ -37,7 +37,7 @@ const featured = await getFeaturedProducts(8);
         <div><p class="eyebrow">De la oferta actual</p><h2 class="mt-4 font-display text-3xl text-ink sm:text-4xl">Un buen lugar para empezar</h2></div>
         <a class="hidden items-center gap-2 text-sm font-semibold text-leaf hover:text-clay sm:inline-flex" href={withBase('/shop')}>Ver toda la oferta <ArrowUpRight size={16} /></a>
       </div>
-      <div class="product-grid">{featured.map((product) => <ProductCard product={product} />)}</div>
+      <div class="product-grid">{featured.map((product) => <ProductCard client:load product={product} />)}</div>
       <a class="button-secondary mt-7 w-full sm:hidden" href={withBase('/shop')}>Ver toda la oferta <ArrowRight size={16} /></a>
     </div>
   </section>
